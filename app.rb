@@ -1,7 +1,8 @@
 require 'rubygems'
 require 'sinatra'
+require 'whois'
+require 'resolv'
 
 get '/' do
-  #params[:host] + ": " + `( host -t A #{params[:host]} | awk "{print $4}" | xargs whois | grep ec2 > /dev/null && echo "Runs on EC2") || echo "Not on EC2"`
-  params[:host] + ": " + `( host -t A scalarium.com | awk "{print $4}" | xargs whois | grep ec2 > /dev/null && echo "Runs on EC2") || echo "Not on EC2"`
+  params[:host] + ": " + Whois.whois(Resolv.new.getaddress(params[:host])).content.grep(/ec2/)
 end
