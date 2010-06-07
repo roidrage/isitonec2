@@ -3,7 +3,9 @@ require 'sinatra'
 require 'whois'
 require 'resolv'
 
-enable :inline_templates
+configure :production do
+  enable :inline_templates
+end
 
 get '/' do
   erb :index
