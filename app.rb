@@ -4,6 +4,7 @@ require 'whois'
 require 'resolv'
 
 enable :inline_templates
+
 get '/' do
   erb :index
 end
