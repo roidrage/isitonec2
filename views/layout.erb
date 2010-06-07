@@ -27,11 +27,24 @@
       
       a, a:visited, a:hover, a:active {
         color: white;
+        font-size: 16px;
+      }
+
+      small {
+        position: absolute;
+        top: 400px;
+        width: 100%;
+        text-align: center;
       }
     </style>
   
   <body>
     <%= yield %>
+
+
+    <small>
+      <a href="http://github.com/mattmatt/isitonec2">Source code</a>
+    </small>
   </body>
 </html>
 
