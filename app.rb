@@ -4,7 +4,11 @@ require 'whois'
 require 'resolv'
 
 def is_it_on_ec2
-  @isonec2 = (Whois.whois(Resolv.new.getaddress(params[:host])).content.grep(/ec2/).any? ? "on EC2" : "not on EC2")
+  begin
+    @isonec2 = (Whois.whois(Resolv.new.getaddress(params[:host])).content.grep(/ec2/).any? ? "is on EC2" : "is not on EC2")
+  rescue
+    @isonec2 = "probably doesn't exist"
+  end
 end
 
 get '/' do
